@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio do Alisson</title>
+    <style>
+        :root {
+            --vermelho-spidey: #c62828;
+            --azul-spidey: #0d47a1;
+            --cinza-texto: #cccccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: var(--cinza-texto);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #101010;
+            border: 2px solid var(--vermelho-spidey);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(13, 71, 161, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.01);
+        }
+
+        .container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--azul-spidey);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--vermelho-spidey);
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: var(--azul-spidey);
+            border: 1px solid var(--azul-spidey);
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .links a:hover {
+            background-color: var(--azul-spidey);
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="./images/tumblr_f034fbff85213f0da3c6387bf1762312_36b8e98c_640.jpg" alt="Foto de Alisson">
+        <h1>Alisson Faundes</h1>
+        <p>Desenvolvedor de Software | Frontend Minimalista</p>
+        <div class="links">
+            <a href="https://www.linkedin.com/in/alisson-fagundes-b40634364/">LinkedIn</a>
+            <a href="https://github.com/AlissonACF">GitHub</a>
+            <a href="mailto:alissomacf@gmail.com">E-mail</a>
+        </div>
+    </div>
+</body>
+</html>
