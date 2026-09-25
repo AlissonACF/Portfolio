@@ -1,114 +1,900 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio do Alisson</title>
-    <style>
-        :root {
-            --vermelho-spidey: #c62828;
-            --azul-spidey: #0d47a1;
-            --cinza-texto: #cccccc;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de Alisson Fagundes em formato de história em quadrinhos do Homem-Aranha.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕸️</text></svg>">
+  <title>Alisson Fagundes — O Espetacular Portfólio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    :root {
+      --paper: #f5f1e8;
+      --ink: #11131b;
+      --spider-red: #d42a3c;
+      --spider-blue: #1a4b8c;
+      --spider-yellow: #ffd34f;
+      --web-grey: #6f7076;
+      --page-shadow: 14px 16px 0 rgba(17,19,27,.16);
+    }
 
-        body {
-            background-color: #0a0a0a;
-            color: var(--cinza-texto);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-        .container {
-            background-color: #101010;
-            border: 2px solid var(--vermelho-spidey);
-            border-radius: 12px;
-            padding: 40px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            box-shadow: 0 0 20px rgba(13, 71, 161, 0.3);
-            transition: transform 0.3s ease;
-        }
+    body {
+      background: #0f1420;
+      color: var(--ink);
+      font-family: Manrope, Arial, sans-serif;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
 
-        .container:hover {
-            transform: scale(1.01);
-        }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(212, 42, 60, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(26, 75, 140, 0.05) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-        .container img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--azul-spidey);
-            margin-bottom: 20px;
-        }
+    button, a { color: inherit; font: inherit; }
+    button { cursor: pointer; }
+    a { text-decoration: none; }
 
-        h1 {
-            font-size: 2rem;
-            color: var(--vermelho-spidey);
-            margin-bottom: 10px;
-        }
+    .topbar {
+      align-items: center;
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      height: 66px;
+      justify-content: space-between;
+      padding: 0 clamp(18px, 4vw, 54px);
+      position: relative;
+      z-index: 10;
+      border-bottom: 4px solid var(--spider-red);
+      overflow: hidden;
+    }
 
-        p {
-            font-size: 1rem;
-            color: #aaa;
-            margin-bottom: 25px;
-        }
+    .topbar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 11px),
+        repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 11px);
+      pointer-events: none;
+    }
 
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+    .brand {
+      align-items: center;
+      display: flex;
+      font-family: 'Archivo Black', sans-serif;
+      font-size: .88rem;
+      gap: 10px;
+      letter-spacing: -.03em;
+      position: relative;
+      z-index: 1;
+    }
 
-        .links a {
-            text-decoration: none;
-            color: var(--azul-spidey);
-            border: 1px solid var(--azul-spidey);
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-        }
+    .brand-web { font-size: 1.25rem; line-height: 1; }
 
-        .links a:hover {
-            background-color: var(--azul-spidey);
-            color: #fff;
-        }
+    .issue {
+      color: #b9c0d0;
+      font: .67rem 'DM Mono', monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.6rem;
-            }
+    .reader {
+      align-items: center;
+      display: grid;
+      min-height: calc(100dvh - 66px);
+      padding: 14px clamp(18px, 3vw, 38px);
+      position: relative;
+      z-index: 1;
+    }
 
-            p {
-                font-size: 0.9rem;
-            }
+    .page-stack {
+      height: calc(100dvh - 94px);
+      margin: 0 auto;
+      max-width: 1240px;
+      perspective: 2000px;
+      perspective-origin: 50% 44%;
+      position: relative;
+      transform-style: preserve-3d;
+      width: min(1240px, 100%);
+    }
 
-            .container {
-                padding: 30px 20px;
-            }
-        }
-    </style>
+    .page-stack::before {
+      background: linear-gradient(90deg, #252631, #050608 45%, #252631);
+      bottom: 0;
+      box-shadow: 0 0 16px rgba(0,0,0,.45);
+      content: '';
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 7px;
+      z-index: 30;
+    }
+
+    .page {
+      background: var(--paper);
+      border: 1px solid rgba(17,19,27,.16);
+      box-shadow: var(--page-shadow);
+      display: flex;
+      flex-direction: column;
+      inset: 0;
+      overflow: hidden;
+      padding: clamp(18px, 2.4vw, 32px);
+      pointer-events: none;
+      position: absolute;
+      transform: rotateY(0deg);
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      transition: none;
+      visibility: visible;
+      z-index: 1;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .page::before {
+      background-image: radial-gradient(rgba(17,19,27,.12) .65px, transparent .7px);
+      background-size: 4px 4px;
+      content: '';
+      inset: 0;
+      opacity: .38;
+      pointer-events: none;
+      position: absolute;
+    }
+
+    .page.active { pointer-events: auto; z-index: 10; }
+    .page.hidden { visibility: hidden; }
+    .page.turned { pointer-events: none; transform: rotateY(-180deg); visibility: hidden; }
+
+    .page.turn-forward {
+      animation: page-forward .92s cubic-bezier(.55,.02,.35,.98) both;
+      box-shadow: 8px 16px 26px rgba(0,0,0,.28);
+      pointer-events: none;
+      visibility: visible;
+      z-index: 20;
+    }
+
+    .page.turn-back {
+      animation: page-back .92s cubic-bezier(.55,.02,.35,.98) both;
+      box-shadow: 8px 16px 26px rgba(0,0,0,.28);
+      pointer-events: none;
+      visibility: visible;
+      z-index: 20;
+    }
+
+    @keyframes page-forward {
+      0% { filter: brightness(1); transform: rotateY(0deg); }
+      48% { filter: brightness(.67); transform: rotateY(-88deg); }
+      52% { filter: brightness(.45); transform: rotateY(-92deg); }
+      100% { filter: brightness(.84); transform: rotateY(-180deg); }
+    }
+
+    @keyframes page-back {
+      0% { filter: brightness(.84); transform: rotateY(-180deg); }
+      48% { filter: brightness(.45); transform: rotateY(-92deg); }
+      52% { filter: brightness(.67); transform: rotateY(-88deg); }
+      100% { filter: brightness(1); transform: rotateY(0deg); }
+    }
+
+    .page > * { position: relative; z-index: 1; }
+
+    .page::after {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 3px solid var(--ink);
+      pointer-events: none;
+      opacity: 0.08;
+    }
+
+    .page-header {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: clamp(14px, 2vh, 24px);
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 12px;
+    }
+
+    .chapter {
+      color: var(--spider-red);
+      font: .64rem 'DM Mono', monospace;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .page-no { font: .67rem 'DM Mono', monospace; letter-spacing: .1em; }
+
+    h1, h2, h3 { font-family: 'Archivo Black', sans-serif; letter-spacing: -.055em; line-height: .92; }
+
+    .cover-grid {
+      align-items: center;
+      display: grid;
+      flex: 1;
+      gap: clamp(28px, 6vw, 90px);
+      grid-template-columns: 1.1fr .9fr;
+    }
+
+    .kicker {
+      align-items: center;
+      color: var(--spider-blue);
+      display: flex;
+      font: .65rem 'DM Mono', monospace;
+      gap: 9px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      background: var(--spider-red);
+      content: '';
+      height: 8px;
+      transform: rotate(45deg);
+      width: 8px;
+    }
+
+    h1 { font-size: clamp(2.55rem, 5vw, 5.5rem); margin: 12px 0 14px; max-width: 690px; }
+    h1 .red { color: var(--spider-red); display: block; }
+    h1 .blue { color: var(--spider-blue); display: block; }
+
+    .cover-copy { color: #454852; font-size: clamp(.84rem, 1.1vw, 1rem); line-height: 1.55; max-width: 550px; }
+
+    .cover-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 17px; }
+
+    .comic-button {
+      border: 2px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+      display: inline-flex;
+      font-size: .75rem;
+      font-weight: 800;
+      gap: 10px;
+      padding: 10px 14px;
+      transition: .16s;
+      position: relative;
+    }
+
+    .comic-button:hover { box-shadow: 1px 1px 0 var(--ink); transform: translate(3px, 3px); }
+    .comic-button.red { background: var(--spider-red); color: white; }
+    .comic-button.blue { background: var(--spider-blue); color: white; }
+
+    /* PAINEL ILUSTRADO — SEM IMAGENS EXTERNAS */
+    .cover-art {
+      align-self: stretch;
+      background: var(--spider-blue);
+      border: 5px solid var(--ink);
+      box-shadow: 9px 10px 0 var(--spider-red);
+      min-height: 0;
+      overflow: hidden;
+      position: relative;
+      transform: rotate(2deg);
+    }
+
+    .cover-art::before {
+      background:
+        repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.15) 0 2px, transparent 2px 8px);
+      content: '';
+      inset: 0;
+      position: absolute;
+      z-index: 0;
+    }
+
+    .web-orbit {
+      border: 2px solid rgba(255,255,255,.76);
+      border-radius: 50%;
+      height: 560px;
+      position: absolute;
+      right: -260px;
+      top: -156px;
+      width: 560px;
+    }
+
+    .web-orbit::before,
+    .web-orbit::after {
+      border: 2px solid rgba(255,255,255,.7);
+      border-radius: 50%;
+      content: '';
+      inset: 72px;
+      position: absolute;
+    }
+
+    .web-orbit::after { inset: 145px; }
+
+    .hero-photo {
+      border: 5px solid var(--ink);
+      bottom: -18px;
+      filter: saturate(.82) contrast(1.08);
+      height: 91%;
+      left: 50%;
+      object-fit: cover;
+      object-position: center 20%;
+      position: absolute;
+      transform: translateX(-50%) rotate(-1.5deg);
+      width: 67%;
+      z-index: 2;
+    }
+
+    /* Balão de som */
+    .sound {
+      background: var(--spider-yellow);
+      border: 3px solid var(--ink);
+      bottom: 29px;
+      color: var(--ink);
+      font: .79rem 'Archivo Black', sans-serif;
+      padding: 9px 12px;
+      position: absolute;
+      right: -9px;
+      transform: rotate(-6deg);
+      z-index: 7;
+    }
+
+    /* Legenda estilo capa de HQ */
+    .caption {
+      background: var(--ink);
+      bottom: 17px;
+      color: var(--paper);
+      font: .57rem 'DM Mono', monospace;
+      left: 17px;
+      letter-spacing: .08em;
+      padding: 8px;
+      position: absolute;
+      text-transform: uppercase;
+      z-index: 7;
+    }
+
+    .spider-logo {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--spider-red);
+      color: white;
+      font: .6rem 'Archivo Black', sans-serif;
+      padding: 6px 10px;
+      border: 2px solid var(--ink);
+      transform: rotate(5deg);
+      z-index: 8;
+      letter-spacing: 0.05em;
+    }
+
+    .cover-footer { align-items: center; display: flex; justify-content: space-between; margin-top: 12px; }
+    .read-hint { color: var(--web-grey); font: .63rem 'DM Mono', monospace; }
+
+    .navigation {
+      align-items: center;
+      bottom: clamp(16px, 3vw, 34px);
+      display: flex;
+      gap: 9px;
+      position: fixed;
+      right: clamp(18px, 4vw, 54px);
+      z-index: 20;
+    }
+
+    .nav-btn {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      font: 700 .62rem 'DM Mono', monospace;
+      min-width: 44px;
+      padding: 11px 12px;
+      transition: .16s;
+    }
+    .nav-btn:hover:not(:disabled) { background: var(--spider-yellow); transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+    .nav-btn:disabled { cursor: not-allowed; opacity: .45; }
+
+    .dots { display: flex; gap: 6px; margin: 0 4px; }
+    .dot { background: #bec1c7; border: 0; border-radius: 50%; height: 8px; padding: 0; width: 8px; transition: .2s; }
+    .dot.active { background: var(--spider-red); transform: scale(1.25); }
+
+    /* PÁGINA 2 - ORIGEM */
+    .origin { display: grid; gap: 34px; grid-template-columns: 1.1fr .9fr; }
+    .origin h2, .projects-title h2, .contact-title h2 { font-size: clamp(2.2rem, 4.3vw, 4.9rem); max-width: 740px; }
+    .origin h2 span { color: var(--spider-red); }
+
+    .narrative { color: #454852; font-size: 1rem; line-height: 1.8; margin-top: 24px; max-width: 650px; }
+
+    .quote {
+      background: var(--spider-yellow);
+      border: 3px solid var(--ink);
+      box-shadow: 5px 5px 0 var(--ink);
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(1.05rem, 1.6vw, 1.45rem);
+      line-height: 1.25;
+      margin-top: 30px;
+      padding: 20px;
+      transform: rotate(-1deg);
+      position: relative;
+    }
+
+    .quote::after {
+      border-left: 18px solid transparent;
+      border-top: 20px solid var(--ink);
+      bottom: -21px;
+      content: '';
+      left: 35px;
+      position: absolute;
+    }
+
+    .fact-cards { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+
+    .fact {
+      background: white;
+      border: 3px solid var(--ink);
+      min-height: 138px;
+      padding: 17px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fact::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(0,0,0,0.03) 8px, rgba(0,0,0,0.03) 9px);
+      pointer-events: none;
+    }
+
+    .fact:nth-child(2) { background: var(--spider-blue); color: white; }
+    .fact:nth-child(3) { background: var(--spider-red); color: white; }
+    .fact:nth-child(4) { background: var(--spider-yellow); }
+
+    .fact span { display: block; font: .57rem 'DM Mono', monospace; letter-spacing: .07em; margin-bottom: 20px; text-transform: uppercase; }
+    .fact strong { font-size: .9rem; line-height: 1.25; position: relative; z-index: 1; }
+
+    .margin-note { border-top: 1px solid var(--ink); color: var(--web-grey); font: .67rem 'DM Mono', monospace; margin-top: 32px; padding-top: 11px; }
+
+    /* PÁGINA 3 - PROJETOS */
+    .projects-title { align-items: end; display: flex; gap: 28px; justify-content: space-between; }
+    .projects-title > p { color: #555863; font-size: .9rem; line-height: 1.6; max-width: 290px; }
+
+    .project-panels { display: grid; gap: 14px; grid-template-columns: 1.05fr .95fr .95fr; margin-top: 32px; }
+
+    .project {
+      border: 3px solid var(--ink);
+      min-height: clamp(195px, 34vh, 285px);
+      overflow: hidden;
+      padding: 19px;
+      position: relative;
+      transition: transform .2s;
+      display: block;
+    }
+
+    .project:hover {
+      transform: scale(1.02);
+    }
+
+    .project:first-child { background: var(--spider-red); color: white; }
+    .project:nth-child(2) { background: var(--spider-blue); color: white; }
+    .project:nth-child(3) { background: var(--spider-yellow); }
+
+    .project::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .project::after {
+      background: repeating-radial-gradient(circle at 83% 22%, rgba(17,19,27,.16) 0 1px, transparent 1px 5px);
+      content: '';
+      inset: 0;
+      opacity: 1;
+      pointer-events: none;
+      position: absolute;
+      transition: opacity .2s ease;
+    }
+
+    .project:hover::after {
+      opacity: 0;
+    }
+
+    .project > * { position: relative; z-index: 1; }
+
+    /* Imagem de preview que aparece no hover, cobrindo o card */
+    .project-img {
+      filter: contrast(1.05);
+      height: 100%;
+      inset: 0;
+      object-fit: cover;
+      opacity: 0;
+      position: absolute;
+      transform: scale(1.05);
+      transition: opacity .35s ease, transform .4s ease;
+      width: 100%;
+      z-index: 0;
+    }
+
+    .project:hover .project-img {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Textos e ícones somem no hover para a imagem ficar bem visível */
+    .project > *:not(.project-img) {
+      opacity: 1;
+      transition: opacity .2s ease;
+    }
+
+    .project:hover > *:not(.project-img) {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .project-number { font: .6rem 'DM Mono', monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .project h3 { font-size: clamp(1.3rem, 2.3vw, 2.15rem); margin: 42px 0 12px; }
+    .project p { font-size: .82rem; line-height: 1.55; max-width: 270px; }
+
+    .project-arrow {
+      border: 2px solid currentColor;
+      bottom: 16px;
+      display: grid;
+      font-size: 1.3rem;
+      height: 37px;
+      place-items: center;
+      position: absolute;
+      right: 16px;
+      width: 37px;
+      transition: .2s;
+    }
+
+    .project:hover .project-arrow {
+      background: white;
+      color: var(--ink);
+      transform: translate(3px, -3px);
+    }
+
+    .project-note { color: #5e616c; font: .68rem 'DM Mono', monospace; margin-top: 19px; }
+    .project-note a { color: var(--spider-red); font-weight: 700; }
+    .project-note a:hover { text-decoration: underline; }
+
+    /* PÁGINA 4 - CONTATO */
+    .contact-grid { align-items: center; display: grid; flex: 1; gap: 42px; grid-template-columns: 1.15fr .85fr; }
+    .contact-title h2 span { color: var(--spider-blue); }
+
+    .skills-list { display: grid; gap: 9px; margin-top: 27px; max-width: 570px; }
+    .skill { align-items: center; border-bottom: 2px solid var(--ink); display: flex; font-weight: 700; justify-content: space-between; padding: 11px 0; transition: .2s; }
+    .skill:hover { padding-left: 8px; color: var(--spider-red); }
+    .skill small { color: var(--spider-red); font: .61rem 'DM Mono', monospace; }
+
+    .contact-card {
+      background: var(--ink);
+      box-shadow: 9px 10px 0 var(--spider-red);
+      color: var(--paper);
+      padding: 28px;
+      transform: rotate(1.5deg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      border: 2px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .contact-card::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 250px;
+      height: 250px;
+      border: 2px solid rgba(212,42,60,0.15);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .contact-card .chapter { color: var(--spider-yellow); }
+    .contact-card h3 { font-size: 1.6rem; margin: 15px 0 25px; position: relative; z-index: 1; }
+
+    .contact-link {
+      border-top: 1px solid #5b6172;
+      display: flex;
+      font: .76rem 'DM Mono', monospace;
+      justify-content: space-between;
+      padding: 15px 0;
+      transition: color .2s;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-link:hover { color: var(--spider-yellow); padding-left: 6px; }
+    .contact-link:last-child { border-bottom: 1px solid #5b6172; }
+
+    .end-tag { color: var(--web-grey); font: .62rem 'DM Mono', monospace; margin-top: 30px; }
+
+    :focus-visible { outline: 3px solid var(--spider-yellow); outline-offset: 4px; }
+
+    /* RESPONSIVO */
+    @media (max-width: 800px) {
+      body { overflow: auto; }
+      .page-stack { height: calc(100vh - 120px); }
+      .page { overflow: auto; }
+      .cover-grid, .origin, .contact-grid { grid-template-columns: 1fr; }
+      .cover-art { min-height: 300px; }
+      .hero-photo { height: 94%; width: 58%; }
+      .project-panels { grid-template-columns: 1fr; }
+      .project { min-height: 190px; }
+      .project h3 { margin: 20px 0 10px; }
+      .projects-title { align-items: start; flex-direction: column; gap: 12px; }
+      .fact-cards { max-width: 500px; }
+    }
+
+    @media (max-width: 520px) {
+      .topbar { height: 57px; }
+      .issue { display: none; }
+      .reader { min-height: calc(100vh - 57px); padding: 14px; }
+      .page-stack { height: calc(100vh - 85px); }
+      .page { padding: 24px 20px 84px; }
+      .page-header { margin-bottom: 22px; }
+      h1 { font-size: 3rem; }
+      .cover-art { min-height: 250px; }
+      .hero-photo { height: 96%; width: 67%; }
+      .sound { font-size: .65rem; }
+      .navigation { bottom: 17px; right: 20px; }
+      .nav-btn { padding: 10px; }
+      .nav-label { display: none; }
+      .fact { min-height: 115px; }
+      .fact span { margin-bottom: 13px; }
+      .contact-card { padding: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .page, .comic-button, .nav-btn { transition: none; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <img src="./images/IMG_20250522_145021.jpg" alt="Foto de Alisson">
-        <h1>Alisson Fagundes</h1>
-        <p>Desenvolvedor de Software | Full Stack | Dev em ascenção</p>
-        <div class="links">
-            <a href="https://www.linkedin.com/in/alisson-fagundes-b40634364/">LinkedIn</a>
-            <a href="https://github.com/AlissonACF">GitHub</a>
-            <a href="mailto:alissomacf@gmail.com">E-mail</a>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Voltar à capa">
+      <span class="brand-web" aria-hidden="true">🕸️</span> DEV / ALISSON
+    </a>
+    <span class="issue">O Espetacular Portfólio · #01 · 2026</span>
+  </header>
+
+  <main class="reader" id="inicio">
+    <div class="page-stack" aria-live="polite">
+
+      <!-- PÁGINA 1: CAPA -->
+      <section class="page active" id="page-1" data-page="0" aria-label="Página 1: Capa">
+        <div class="page-header">
+          <span class="chapter">Capa · Edição Especial</span>
+          <span class="page-no">01 / 04</span>
         </div>
+        <div class="cover-grid">
+          <div>
+            <p class="kicker">Desenvolvedor de Sistemas em Formação</p>
+            <h1>O CÓDIGO DA <span class="red">VIZINHANÇA</span><span class="blue">CHEGOU.</span></h1>
+            <p class="cover-copy">
+              Eu sou Alisson Fagundes. Entre ideias, telas e linhas de código, construo meu caminho no desenvolvimento de software — sempre de olho no próximo desafio. Como o amigo da vizinhança, estou pronto para ajudar.
+            </p>
+            <div class="cover-actions">
+              <button class="comic-button red" data-go="1">COMEÇAR A LER <span>→</span></button>
+              <a class="comic-button blue" href="mailto:alissomacf@gmail.com">CHAMAR O HERÓI ↗</a>
+            </div>
+          </div>
+
+          <div class="cover-art" aria-label="Foto de Alisson com elementos gráficos de HQ">
+            <span class="spider-logo">ISSUE #01</span>
+            <span class="web-orbit" aria-hidden="true"></span>
+            <img class="hero-photo" src="./images/09fb9bcd-4047-4dca-82fd-925528268b68.png" alt="Alisson Fagundes">
+            <span class="sound">THWIP!</span>
+            <span class="caption">Responsabilidade · Criatividade · Código</span>
+          </div>
+        </div>
+        <div class="cover-footer">
+          <span class="read-hint">USE AS SETAS OU OS BOTÕES PARA VIRAR A PÁGINA</span>
+          <span class="read-hint">SANTA CATARINA · BRASIL</span>
+        </div>
+      </section>
+
+      <!-- PÁGINA 2: ORIGEM -->
+      <section class="page" id="page-2" data-page="1" aria-label="Página 2: Sobre mim" aria-hidden="true">
+        <div class="page-header">
+          <span class="chapter">Capítulo 01 · A Origem</span>
+          <span class="page-no">02 / 04</span>
+        </div>
+        <div class="origin">
+          <div>
+            <h2>TODA HISTÓRIA <span>COMEÇA</span> COM CURIOSIDADE.</h2>
+            <p class="narrative">
+              Sou estudante de Desenvolvimento de Sistemas e gosto de entender como as coisas funcionam — principalmente quando isso significa transformar uma ideia em algo útil na tela. Minha jornada é feita de estudo, testes, boas perguntas e a vontade de melhorar a cada projeto.
+            </p>
+            <aside class="quote">
+              “Com grandes desafios, vêm grandes oportunidades de aprender.”
+            </aside>
+            <p class="margin-note">NOTA DO EDITOR: FÃ DE HQS, ANIMES, GAMES E SOLUÇÕES BEM PENSADAS.</p>
+          </div>
+          <div class="fact-cards" aria-label="Informações profissionais">
+            <article class="fact"><span>Formação</span><strong>Desenvolvimento de Sistemas</strong></article>
+            <article class="fact"><span>Foco Atual</span><strong>Desenvolvimento Full Stack</strong></article>
+            <article class="fact"><span>Localização</span><strong>Brasil · Presencial</strong></article>
+            <article class="fact"><span>Status Atual</span><strong>Assistente de TI · Transportadora Peregrina</strong></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- PÁGINA 3: PROJETOS -->
+      <section class="page" id="page-3" data-page="2" aria-label="Página 3: Projetos" aria-hidden="true">
+        <div class="page-header">
+          <span class="chapter">Capítulo 02 · Casos em Ação</span>
+          <span class="page-no">03 / 04</span>
+        </div>
+        <div class="projects-title">
+          <h2>PROJETOS<br>EM <span style="color:var(--spider-red)">QUADRINHOS.</span></h2>
+          <p>Todo projeto é uma edição: tem contexto, conflito, solução e muito aprendizado entre os quadros.</p>
+        </div>
+        <div class="project-panels">
+          <a class="project" href="https://github.com/AlissonACF/collectors-hub" target="_blank" rel="noopener">
+            <img class="project-img" src="images/collectors-hub.png" alt="" loading="lazy">
+            <span class="project-number">Case File · 01</span>
+            <h3>COLLECTORSHUB</h3>
+            <p>Projeto principal — confira o código-fonte completo no repositório do GitHub.</p>
+            <span class="project-arrow">↗</span>
+          </a>
+          <a class="project" href="https://github.com/AlissonACF/guarda-vidas" target="_blank" rel="noopener">
+            <img class="project-img" src="images/lifeguard.png" alt="" loading="lazy">
+            <span class="project-number">Case File · 02</span>
+            <h3>LIFEGUARD</h3>
+            <p>Aplicação web — confira o código-fonte completo no repositório do GitHub.</p>
+            <span class="project-arrow">↗</span>
+          </a>
+          <a class="project" href="https://github.com/AlissonACF/biblioteca-senai" target="_blank" rel="noopener">
+            <img class="project-img" src="images/biblioteca-ok.png" alt="" loading="lazy">
+            <span class="project-number">Case File · 03</span>
+            <h3>BIBLIOTECA SENAI</h3>
+            <p>Sistema de biblioteca — confira o código-fonte completo no repositório do GitHub.</p>
+            <span class="project-arrow">↗</span>
+          </a>
+        </div>
+        <p class="project-note">
+          PARA VER REPOSITÓRIOS, EXPERIMENTOS E COMMITS:
+          <a href="https://github.com/AlissonACF" target="_blank" rel="noopener"><strong>GITHUB ↗</strong></a>
+        </p>
+      </section>
+
+      <!-- PÁGINA 4: CONTATO -->
+      <section class="page" id="page-4" data-page="3" aria-label="Página 4: Habilidades e contato" aria-hidden="true">
+        <div class="page-header">
+          <span class="chapter">Final da Edição · Próximo Capítulo?</span>
+          <span class="page-no">04 / 04</span>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-title">
+            <h2>PRONTO PARA <span>TE AJUDAR</span> A EVOLUIR.</h2>
+            <div class="skills-list" aria-label="Habilidades">
+              <div class="skill"><span>FRONT-END E INTERFACES</span><small>SKILL 01</small></div>
+              <div class="skill"><span>LÓGICA E BACK-END</span><small>SKILL 02</small></div>
+              <div class="skill"><span>BANCO DE DADOS</span><small>SKILL 03</small></div>
+              <div class="skill"><span>APRENDIZADO CONTÍNUO</span><small>SKILL 04</small></div>
+            </div>
+            <p class="end-tag">FIM DA EDIÇÃO #01 · A HISTÓRIA CONTINUA...</p>
+          </div>
+          <aside class="contact-card">
+            <p class="chapter">Canal Direto</p>
+            <h3>VAMOS<br>CONVERSAR?</h3>
+            <a class="contact-link" href="mailto:alissomacf@gmail.com">
+              <span>E-MAIL</span><span>↗</span>
+            </a>
+            <a class="contact-link" href="https://www.linkedin.com/in/alisson-fagundes-b40634364/" target="_blank" rel="noopener">
+              <span>LINKEDIN</span><span>↗</span>
+            </a>
+            <a class="contact-link" href="https://github.com/AlissonACF" target="_blank" rel="noopener">
+              <span>GITHUB</span><span>↗</span>
+            </a>
+          </aside>
+        </div>
+      </section>
     </div>
+  </main>
+
+  <nav class="navigation" aria-label="Navegação pelas páginas">
+    <button class="nav-btn" id="previous" type="button" aria-label="Página anterior">
+      ← <span class="nav-label">VOLTAR</span>
+    </button>
+    <div class="dots" aria-label="Página atual">
+      <button class="dot active" type="button" data-go="0" aria-label="Ir para a página 1"></button>
+      <button class="dot" type="button" data-go="1" aria-label="Ir para a página 2"></button>
+      <button class="dot" type="button" data-go="2" aria-label="Ir para a página 3"></button>
+      <button class="dot" type="button" data-go="3" aria-label="Ir para a página 4"></button>
+    </div>
+    <button class="nav-btn" id="next" type="button" aria-label="Próxima página">
+      <span class="nav-label">PRÓXIMA</span> →
+    </button>
+  </nav>
+
+  <script>
+    const pages = Array.from(document.querySelectorAll('.page'));
+    const dots = Array.from(document.querySelectorAll('.dot'));
+    const previous = document.getElementById('previous');
+    const next = document.getElementById('next');
+    let currentPage = 0;
+    let isTurning = false;
+
+    function updateControls() {
+      dots.forEach((dot, index) => dot.classList.toggle('active', index === currentPage));
+      previous.disabled = currentPage === 0;
+      next.disabled = currentPage === pages.length - 1;
+    }
+
+    function setInitialPage() {
+      pages.forEach((page, index) => {
+        page.classList.remove('turned', 'turn-forward', 'turn-back');
+        page.classList.toggle('active', index === 0);
+        page.classList.toggle('hidden', index !== 0);
+        page.setAttribute('aria-hidden', String(index !== 0));
+      });
+      updateControls();
+    }
+
+    function turnPage(target) {
+      target = Math.max(0, Math.min(target, pages.length - 1));
+      if (isTurning || target === currentPage) return;
+
+      const current = pages[currentPage];
+      const destination = pages[target];
+      const goingForward = target > currentPage;
+      isTurning = true;
+
+      destination.scrollTop = 0;
+      destination.classList.remove('hidden', 'turned');
+      destination.setAttribute('aria-hidden', 'false');
+
+      if (goingForward) {
+        destination.classList.add('active');
+        current.classList.add('turn-forward');
+      } else {
+        destination.classList.add('turned', 'turn-back');
+      }
+
+      window.setTimeout(() => {
+        current.classList.remove('active', 'turn-forward', 'turn-back');
+        current.classList.add('hidden');
+        current.setAttribute('aria-hidden', 'true');
+
+        destination.classList.remove('turned', 'turn-forward', 'turn-back', 'hidden');
+        destination.classList.add('active');
+        currentPage = target;
+        updateControls();
+        isTurning = false;
+      }, 920);
+    }
+
+    document.querySelectorAll('[data-go]').forEach(control => {
+      control.addEventListener('click', () => turnPage(Number(control.dataset.go)));
+    });
+    previous.addEventListener('click', () => turnPage(currentPage - 1));
+    next.addEventListener('click', () => turnPage(currentPage + 1));
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'ArrowRight') turnPage(currentPage + 1);
+      if (event.key === 'ArrowLeft') turnPage(currentPage - 1);
+    });
+
+    setInitialPage();
+  </script>
 </body>
 </html>
